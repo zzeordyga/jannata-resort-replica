@@ -24,3 +24,32 @@ $phone-width: 540px;
     padding: 0;
     margin: 0;
 }
+
+.q-container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0 5rem;
+    margin: 0 auto;
+
+    @include for-tablet {
+        padding: 0 35px;
+    }
+
+    @include for-phone {
+        padding: 0 20px;
+    }
+}
+
+.container-inner {
+    box-sizing: border-box;
+    padding: 0 8rem;
+
+    @include for-tablet {
+        padding: 0 50px;
+    }
+
+    @include for-phone {
+        padding: 0 20px;
+    }
+}
