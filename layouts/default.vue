@@ -6,7 +6,51 @@
                     <img src="~/assets/images/award.png" class="award" />
                 </a>
                 <div>
-                    <div class="navbar-header">
+                    <Transition name="slide-open">
+                        <div class="desktop-navbar" v-if="!open" ref="desktopNavbar">
+                            <div class="navbar-header" @click="(open = true)">
+                                <div class="navbar-toggle">
+                                    <div class="navbar-btn">
+                                        <div class="navbar-btn-bars">
+                                            <div class="bars"></div>
+                                            <div class="bars"></div>
+                                            <div class="bars"></div>
+                                        </div>
+                                        <div class="navbar-btn-label">
+                                            <span class="navbar-btn-label-menu">Menu</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-header reservation" @click="scrollToTarget">
+                                <div class="navbar-toggle">
+                                    <div class="navbar-btn">
+                                        <div class="navbar-btn-bars">
+                                            <div class="bars"></div>
+                                            <div class="bars"></div>
+                                            <div class="bars"></div>
+                                        </div>
+                                        <div class="navbar-btn-label">
+                                            <span class="navbar-btn-label-menu">Book Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                    <Transition name="slide-up">
+                        <div class="navbar-header-mobile" v-if="!open">
+                            <a href="/" class="logo">
+                                <img src="~/assets/images/jannata.png" alt="" width="70">
+                            </a>
+                            <div class="navbar-btn-bars" style="cursor:pointer" @click="(open = true)">
+                                <div class="bars"></div>
+                                <div class="bars"></div>
+                                <div class="bars"></div>
+                            </div>
+                        </div>
+                    </Transition>
+                    <div class="navbar-header close" v-if="open" key="2" @click="(open = false)">
                         <div class="navbar-toggle">
                             <div class="navbar-btn">
                                 <div class="navbar-btn-bars">
@@ -15,26 +59,11 @@
                                     <div class="bars"></div>
                                 </div>
                                 <div class="navbar-btn-label">
-                                    <span class="navbar-btn-label-menu">Menu</span>
+                                    <span class="navbar-btn-label-menu">Close</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="navbar-header reservation">
-                        <div class="navbar-toggle">
-                            <div class="navbar-btn">
-                                <div class="navbar-btn-bars">
-                                    <div class="bars"></div>
-                                    <div class="bars"></div>
-                                    <div class="bars"></div>
-                                </div>
-                                <div class="navbar-btn-label">
-                                    <span class="navbar-btn-label-menu">Book Now</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="navbar-header close"></div>
                 </div>
             </div>
         </header>
@@ -42,7 +71,14 @@
 </template>
 
 <script setup lang="ts">
-
+const open = ref(false);
+const scrollTarget = ref();
+const desktopNavbar = ref();
+const scrollToTarget = () => {
+    scrollTarget?.value?.scrollIntoView({
+        behavior: "smooth"
+    })
+}
 </script>
 
 <style lang="scss">
@@ -52,6 +88,11 @@
     background-size: cover;
     width: 100%;
     height: 1024px;
+    overflow-x: hidden;
+
+    &-2 {
+        background-image: url('~/temp/blond-lauren.jpg');
+    }
 }
 
 .award {
@@ -86,12 +127,6 @@
         transform: translateX(0) translateY(-100%);
         color: #000000;
 
-        &.close {
-            transform: translateX(0) translateY(-100%);
-            color: #ffffff;
-            right: -100px;
-        }
-
         &:hover {
             transform: translateX(-10px) translateY(-100%);
 
@@ -104,6 +139,16 @@
                         width: 0;
                     }
                 }
+            }
+        }
+
+        &.close {
+            transform: translateX(0) translateY(-100%);
+            color: #ffffff;
+            background-color: transparent;
+
+            .bars {
+                background-color: white;
             }
         }
 
@@ -178,6 +223,48 @@
                 }
             }
         }
+
+        &-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background-color: #323037;
+            z-index: 999;
+
+            .logo {
+                width: 70px;
+                display: block;
+                margin: 10px auto;
+            }
+
+            .navbar-btn-bars {
+                position: absolute;
+                right: 30px;
+                top: 30px;
+                width: 65px;
+                height: 15px;
+                overflow: hidden;
+
+                & * {
+                    background-color: #fff;
+                }
+            }
+        }
+
+        @include for-phone {
+            display: none;
+
+            &-mobile {
+                display: block;
+            }
+
+            &.close {
+                display: block;
+            }
+        }
     }
 
     &-btn {
@@ -235,5 +322,38 @@
     height: 1px;
     background-color: #000000;
     transition: all .7s cubic-bezier(.19, 1, .22, 1);
+}
+
+.slide {
+    &-open {
+        &-enter-active {
+            transition: all .3s ease;
+        }
+
+        &-leave-active {
+            transition: all 0.8s ease;
+        }
+
+        &-enter-from,
+        &-leave-to {
+            right: -100px;
+            opacity: 0;
+        }
+    }
+
+    &-up {
+        &-enter-active {
+            transition: all .3s ease;
+        }
+
+        &-leave-active {
+            transition: all 0.8s ease;
+        }
+
+        &-enter-from,
+        &-leave-to {
+            top: -100px;
+        }
+    }
 }
 </style>
