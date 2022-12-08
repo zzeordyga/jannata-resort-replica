@@ -6,7 +6,8 @@
                     <div class="column hide-mobile"></div>
                     <div class="column is-7">
                         <div class="columns calendar-custom calendar-container">
-
+                            <InputsCalendar name="checkInDate" id="checkInDate" placeholder="Check In" />
+                            <InputsCalendar name="checkOutDate" id="checkOutDate" placeholder="Check Out" />
                         </div>
                         <div class="columns btn-increment">
                             <InputsCounter label="Adults(s)" />
@@ -33,6 +34,7 @@ import { scrollTarget } from '@/utils/state';
         -ms-flex-wrap: wrap;
         -webkit-flex-wrap: wrap;
         height: 120vh;
+        z-index: 100;
     }
 }
 
