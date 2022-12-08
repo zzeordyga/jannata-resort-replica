@@ -31,11 +31,6 @@ const moveImage = (e: MouseEvent) => {
         parallaxRef.value.style.transform = `matrix(1,0,0,1,${x},${y}) scale(1.2)`
     }
 }
-
-const resolveUrl = (slide: SlideData): string => {
-    return `${slide.featured?.aws_file_url}/${slide.featured?.path}/${slide.featured?.filename.big}`
-}
-
 </script>
 
 <style scoped>

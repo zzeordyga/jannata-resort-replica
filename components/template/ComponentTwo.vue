@@ -1,8 +1,27 @@
 <template>
     <div class="parallax-background">
         <div class="q-container container-inner">
-            <div class="columns">
-
+            <div class="columns block-card-shadow">
+                <div class="column block-picture">
+                    <figure class="picture" style="height: 390px;">
+                        <div class="picture-box">
+                            <img class="image-parallax" :src="resolveUrl(model)" style="height: 429px">
+                        </div>
+                        <div class="parallax-box" ref="box"></div>
+                    </figure>
+                </div>
+                <div class="column block-entry">
+                    <div class="inner">
+                        <div class="content-text">
+                            <h1 class="section-headline" v-html="model.title"></h1>
+                        </div>
+                        <div class="content-text">
+                            <p v-html="model.description"></p>
+                        </div>
+                        <div class="content-text"><Button :text="model.link.title" type="ghost-green" :href="model.url"
+                                style="width: auto;"></Button></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -10,10 +29,33 @@
 
 <script setup lang="ts">
 const props = defineProps(['model'])
+const box = ref()
 </script>
 
 <style scoped lang="scss">
+.section-headline {
+    font: 400 35px/1.3 Playfair Display, serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #5f5c68;
+    position: relative;
+    margin-top: 0;
+    display: block;
+    margin-bottom: 50px;
+
+    @include for-phone {
+        font-size: 20px;
+    }
+}
+
+.content-text {
+    color: #5f5c68
+}
+
 .parallax-background {
+
+    position: relative;
+    overflow: hidden;
 
     &:after,
     &:before {
@@ -40,6 +82,100 @@ const props = defineProps(['model'])
 
     @include for-desktop {
         padding: 75px 0;
+    }
+}
+
+.inner {
+    padding: 0 50px 0 100px;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 40%;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+
+    @include for-desktop {
+        width: 30%;
+        padding-left: 0;
+    }
+
+    @include for-tablet {
+        padding-right: 25px;
+    }
+
+    @include for-phone {
+        position: absolute;
+        text-align: left;
+        margin-bottom: 30px;
+        top: 5%;
+        right: 0%;
+        width: 90%;
+    }
+}
+
+.block-picture {
+    flex: none;
+    width: 57.5%;
+
+    @include for-phone {
+        width: 100%;
+    }
+}
+
+.block-entry {
+    display: flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    align-items: center;
+    -webkit-align-items: center;
+    flex: none;
+    width: 42.5%;
+
+    @include for-phone {
+        width: 100%;
+        padding: 50px;
+    }
+}
+
+.parallax-box {
+    position: absolute;
+    top: 60px;
+    right: -80%;
+    width: 140%;
+    z-index: -1;
+    height: 100%;
+    background-color: #d8d6e2;
+
+    @include for-phone {
+        display: none;
+    }
+}
+
+.picture-box {
+    overflow: hidden;
+
+    & img {
+        width: auto;
+        z-index: 5;
+    }
+
+    @include for-phone {
+        overflow: visible;
+
+        & img {
+            width: 100%;
+        }
+    }
+}
+
+.picture {
+    position: relative;
+    margin: 0;
+    padding: 0 30px 0 20px;
+
+    @include for-phone {
+        margin-top: 240px;
+        padding: 0 20px 0 0;
+        overflow: hidden;
     }
 }
 </style>

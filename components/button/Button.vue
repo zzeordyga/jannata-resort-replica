@@ -26,8 +26,6 @@ const hoverMove = (e: MouseEvent) => {
 const resetPosition = () => {
     btnRef.value.style.transform = ''
 }
-
-
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +33,7 @@ const resetPosition = () => {
 
     &-action,
     &-ghost,
+    &-ghost-green,
     &-hollow {
         transition: all .26s ease-out;
         padding: 12px 10px;
@@ -59,27 +58,35 @@ const resetPosition = () => {
     }
 
     &-ghost {
-        background-color: transparent;
-        position: relative;
 
-        &:hover {
-            color: $primary;
+        &,
+        &-green {
+            background-color: transparent;
+            position: relative;
+
+            &:hover {
+                color: $primary;
+
+                &:before {
+                    width: calc(100% - 40px);
+                }
+            }
 
             &:before {
-                width: calc(100% - 40px);
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: -12px;
+                left: 20px;
+                width: 0;
+                height: 2px;
+                background: $primary;
+                transition: all .5s cubic-bezier(.86, 0, .07, 1);
             }
         }
 
-        &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: -12px;
-            left: 20px;
-            width: 0;
-            height: 2px;
-            background: $primary;
-            transition: all .5s cubic-bezier(.86, 0, .07, 1);
+        &-green {
+            color: $primary;
         }
     }
 

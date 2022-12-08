@@ -97,3 +97,25 @@ $phone-width: 540px;
         }
     }
 }
+
+.block-card {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    height: 120vh;
+    z-index: 100;
+
+    &-shadow {
+        padding: 50px 0 80px;
+
+        @include for-tablet {
+            display: flex;
+        }
+    }
+
+    @include for-phone {
+        justify-content: center;
+    }
+}
