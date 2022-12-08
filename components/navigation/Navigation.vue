@@ -216,7 +216,7 @@ const replaceBackgroundImage = (url: string) => {
         height: 110px;
         background-color: #ffffff;
         cursor: pointer;
-        z-index: 70;
+        z-index: 1000;
         transition: all .7s cubic-bezier(.19, 1, .22, 1);
         top: 30%;
         border: none;
@@ -411,7 +411,7 @@ const replaceBackgroundImage = (url: string) => {
     &-content {
         transform: matrix(1, 0, 0, 1, 0, 0);
         background: #323037;
-        z-index: 2;
+        z-index: 999;
         display: flex;
         align-items: center;
         justify-content: center;

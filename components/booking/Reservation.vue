@@ -4,7 +4,7 @@
             <div class="q-container container-inner">
                 <div class="columns block-card">
                     <div class="column hide-mobile"></div>
-                    <div class="column is-7">
+                    <div class="column">
                         <div class="columns calendar-custom calendar-container">
                             <InputsCalendar name="checkInDate" id="checkInDate" placeholder="Check In" />
                             <InputsCalendar name="checkOutDate" id="checkOutDate" placeholder="Check Out" />
@@ -42,7 +42,6 @@ import { scrollTarget } from '@/utils/state';
 }
 
 .btn {
-
     &-increment {
         display: flex;
         justify-content: space-between;

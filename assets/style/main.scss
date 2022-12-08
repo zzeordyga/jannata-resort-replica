@@ -91,7 +91,6 @@ $phone-width: 540px;
     flex-shrink: 1;
 
     &s {
-        display: flex;
 
         @include for-tablet {
             display: block;

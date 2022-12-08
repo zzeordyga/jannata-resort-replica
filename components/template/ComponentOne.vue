@@ -120,7 +120,7 @@ onUnmounted(() => {
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 500;
+        z-index: 600;
         color: #fff;
         display: flex;
         justify-content: center;
@@ -128,7 +128,7 @@ onUnmounted(() => {
 
         & .caption {
             opacity: 1;
-            z-index: 999;
+            z-index: 700;
             position: absolute;
             left: 50%;
             bottom: 20%;
@@ -185,7 +185,7 @@ onUnmounted(() => {
         left: 50%;
         top: 80px;
         transform: translateX(-50%);
-        z-index: 10;
+        z-index: 850;
 
         @include for-phone {
             display: none;
@@ -205,7 +205,7 @@ onUnmounted(() => {
         justify-content: flex-start;
         right: 5%;
         bottom: 5%;
-        z-index: 999;
+        z-index: 800;
 
 
         @include for-tablet {
