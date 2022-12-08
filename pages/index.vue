@@ -1,20 +1,21 @@
 <template>
     <div>
-        Hello!
-        <component v-for="(item, i) in components.slice().reverse()" key="i" :is="item.component" :model="item.model">
+        <component v-for="item in components.slice().reverse()" :key="item.id" :is="item.component" :model="item.model">
         </component>
+        <BookingReservation></BookingReservation>
     </div>
 </template>
 
 <script setup lang="ts">
 import data from '@/content/homepage.json'
 
-const components = data?.components.map(c => {
+const components = data?.components.map((c, i) => {
     return {
         ...c,
+        id: i,
         component: defineAsyncComponent(() => import(`@/components/template/${c.component_name}.vue`))
     }
-}).reverse();
+}).slice().reverse();
 </script>
 <style>
 html,

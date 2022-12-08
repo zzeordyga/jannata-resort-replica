@@ -201,7 +201,6 @@ const replaceBackgroundImage = (url: string) => {
         gsap.to(screenItem.value, {
             opacity: 0,
             duration: 0.1,
-            ease: 'ease-in',
         })
 
     }
@@ -289,7 +288,7 @@ const replaceBackgroundImage = (url: string) => {
 
             &:hover {
                 transform: translateX(-10px) translateY(0);
-                background-color: #679334;
+                background-color: $primary;
 
                 .navbar-btn-bars {
                     .bars {
@@ -444,7 +443,7 @@ const replaceBackgroundImage = (url: string) => {
 
                 &:hover,
                 &.active {
-                    color: #679334
+                    color: $primary
                 }
             }
         }
@@ -618,7 +617,7 @@ const replaceBackgroundImage = (url: string) => {
                     left: -10px;
                     width: 0;
                     height: 2px;
-                    background: #679334;
+                    background: $primary;
                     transition: all .5s cubic-bezier(.86, 0, .07, 1);
                     z-index: -1;
                 }
