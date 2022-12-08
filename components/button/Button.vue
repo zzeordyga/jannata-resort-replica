@@ -14,10 +14,13 @@ const btnRef = ref()
 
 const hoverMove = (e: MouseEvent) => {
     const rect = ((e.target) as Element)?.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) * 2) / 20;
-    const y = ((e.clientY - rect.top) * 5) / 10;
+    const x = ((e.clientX - (Math.abs(rect.left) > Math.abs(rect.right) ? Math.abs(rect.right) : Math.abs(rect.left))) * 2) / 10;
+    const y = ((e.clientY - (Math.abs(rect.top) > Math.abs(rect.bottom) ? Math.abs(rect.bottom) : Math.abs(rect.top))) * 4) / 10;
 
-    btnRef.value.style.transform = `translateX(${x}px) translateY(${y}px)`
+    const xDir = Math.abs((e.clientX - rect.left)) > Math.abs((e.clientX - rect.right)) ? 1 : -1;
+    const yDir = Math.abs((e.clientY - rect.top)) > Math.abs((e.clientY - rect.bottom)) ? 1 : -1;
+
+    btnRef.value.style.transform = `matrix(1,0,0,1,${x * xDir},${y * yDir})`
 }
 
 const resetPosition = () => {
@@ -31,7 +34,8 @@ const resetPosition = () => {
 .btn {
 
     &-action,
-    &-ghost {
+    &-ghost,
+    &-hollow {
         transition: all .26s ease-out;
         padding: 12px 10px;
         font-size: 12px;
@@ -76,6 +80,18 @@ const resetPosition = () => {
             height: 2px;
             background: $primary;
             transition: all .5s cubic-bezier(.86, 0, .07, 1);
+        }
+    }
+
+    &-hollow {
+        background-color: transparent;
+        position: relative;
+        color: white;
+        border: 1px white solid;
+
+        &:hover {
+            background-color: white;
+            color: black;
         }
     }
 }
