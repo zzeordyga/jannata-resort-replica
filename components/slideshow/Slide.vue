@@ -10,8 +10,8 @@
                     </div>
                 </div>
             </div>
-            <div class="slideshow-image-container">
-                <img :src="resolveUrl(slide)" ref="image" />
+            <div class="slideshow-image-container" ref="parallaxRef">
+                <img :src="resolveUrl(slide)" />
             </div>
         </div>
     </div>
@@ -20,17 +20,16 @@
 <script setup lang="ts">
 const props = defineProps(['slide'])
 const slide = ref(props.slide)
-const image = ref()
+const parallaxRef = ref()
+const transform = ref()
 
 const moveImage = (e: MouseEvent) => {
-    const rect = ((e.target) as Element)?.getBoundingClientRect();
-    const x = ((e.clientX - (Math.abs(rect.left) > Math.abs(rect.right) ? Math.abs(rect.right) : Math.abs(rect.left))) * 2) / 10;
-    const y = ((e.clientY - (Math.abs(rect.top) > Math.abs(rect.bottom) ? Math.abs(rect.bottom) : Math.abs(rect.top))) * 4) / 10;
+    if (parallaxRef.value) {
+        const x = ((e.clientX * 2)) / 40;
+        const y = ((e.clientY * 4)) / 40;
 
-    const xDir = Math.abs((e.clientX - rect.left)) > Math.abs((e.clientX - rect.right)) ? 1 : -1;
-    const yDir = Math.abs((e.clientY - rect.top)) > Math.abs((e.clientY - rect.bottom)) ? 1 : -1;
-
-    image.value.style.transform = `matrix(1,0,0,1,${x * xDir},${y * yDir})`
+        parallaxRef.value.style.transform = `matrix(1,0,0,1,${x},${y}) scale(1.2)`
+    }
 }
 
 const resolveUrl = (slide: SlideData): string => {

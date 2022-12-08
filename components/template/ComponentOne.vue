@@ -108,10 +108,10 @@ onUnmounted(() => {
         position: absolute;
         width: 100%;
         height: 100%;
-        background-size: cover;
         z-index: 2;
         background-position: 50%;
         overflow: hidden;
+        transform: scale(2);
     }
 
     &-content-container {
