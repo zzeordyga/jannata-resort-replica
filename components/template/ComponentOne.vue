@@ -4,26 +4,19 @@
             <img src="@/assets/images/jannata.png" alt="">
         </a>
         <div class="slideshow-slides" :ref="slides">
-            <div class="slideshow-slide" v-for="slide in props.model.dataSlider" :key="slide.id">
-                <div class="slideshow-content-container">
-                    <div class="caption">
-                        <h1 class="title">{{ slide.title }}</h1>
-                        <h3 class="description">{{ slide.description }}</h3>
-                        <div class="slideshow-read-more">
-                            <Button :text="slide.link.title" :href="slide.link.url" type="hollow"></Button>
-                        </div>
-                    </div>
-                </div>
-                <div class="slideshow-image-container">
-                    <img :src="resolveUrl(slide)" />
-                </div>
+            <!-- <Transition :name="`slide-${direction}`"> -->
+            <div v-for="(slide, i) in props.model.dataSlider" :key="i">
+                <Transition :name="`slide-${direction}`">
+                    <SlideshowSlide :slide="slide" v-if="(currentSlide === i)" />
+                </Transition>
             </div>
+            <!-- </Transition> -->
         </div>
         <div class="slideshow-control">
-            <div class="slideshow-button">
+            <div class="slideshow-button" @click="prev">
                 <Icon name="heroicons-solid:chevron-left" size="2rem" />
             </div>
-            <div class="slideshow-button">
+            <div class="slideshow-button" @click="next">
                 <Icon name="heroicons-solid:chevron-right" size="2rem" />
             </div>
         </div>
@@ -33,13 +26,50 @@
 <script setup lang="ts">
 const props = defineProps(['model'])
 const slides = ref()
+const currentSlide = ref(0)
+const direction = ref("left")
+const delay = 5000
+const intervalId = ref()
 
-const resolveUrl = (slide: SlideData): string => {
-    return `${slide.featured?.aws_file_url}/${slide.featured?.path}/${slide.featured?.filename.big}`
+const switchInterval = () => {
+    if (intervalId.value !== null) clearInterval(intervalId.value);
+    intervalId.value = setInterval(() => {
+        next()
+    }, delay)
 }
+
+const next = () => {
+    if (currentSlide.value < props.model.dataSlider?.length - 1)
+        currentSlide.value++;
+    else currentSlide.value = 0
+
+    direction.value = "left";
+
+    switchInterval()
+}
+
+const prev = () => {
+    if (currentSlide.value > 0)
+        currentSlide.value++;
+    else currentSlide.value = props.model.dataSlider?.length - 1
+
+    direction.value = "right";
+
+    switchInterval()
+}
+
+onMounted(() => {
+    intervalId.value = setInterval(() => {
+        next()
+    }, delay)
+})
+
+onUnmounted(() => {
+    () => clearInterval(intervalId.value)
+})
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .slideshow {
     &-container {
         background-color: black;
@@ -163,17 +193,18 @@ const resolveUrl = (slide: SlideData): string => {
     }
 
     &-control {
-        position: relative;
+        position: absolute;
         /* bottom: 200px; */
         color: white;
         display: flex;
         justify-content: flex-start;
-        right: 0;
+        right: 5%;
+        bottom: 5%;
+        z-index: 999;
 
 
-        @include for-phone {
-            left: 0;
-            justify-content: flex-end;
+        @include for-tablet {
+            left: 2%;
         }
     }
 
@@ -185,6 +216,40 @@ const resolveUrl = (slide: SlideData): string => {
         &:hover {
             border: 2px solid white;
             opacity: 1;
+        }
+    }
+}
+
+.slide {
+    &-left {
+        &-enter-active {
+            transition: all 0.3s ease-out;
+        }
+
+        &-leave-active {
+            transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        }
+
+        &-enter-from,
+        &-leave-to {
+            right: 400px;
+            opacity: 0;
+        }
+    }
+
+    &-right {
+        &-enter-active {
+            transition: all 0.3s ease-out;
+        }
+
+        &-leave-active {
+            transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        }
+
+        &-enter-from,
+        &-leave-to {
+            right: 400px;
+            opacity: 0;
         }
     }
 }
