@@ -38,6 +38,10 @@ import { scrollTarget } from '@/utils/state';
         -webkit-flex-wrap: wrap;
         height: 120vh;
         z-index: 100;
+
+        @include for-phone {
+            justify-content: center;
+        }
     }
 }
 

@@ -22,7 +22,7 @@ label {
 
 .calendar {
     border: 1px $primary solid;
-    padding: 12px 24px;
+    padding: 12px 42px;
     background-color: transparent;
     color: $primary;
     margin: 0 6px;
@@ -32,9 +32,14 @@ label {
         color: $primary;
         text-transform: uppercase;
     }
+
+    @include for-phone {
+        padding: 12px;
+    }
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #fff;
     opacity: 1;
     display: block;
     width: 20px;

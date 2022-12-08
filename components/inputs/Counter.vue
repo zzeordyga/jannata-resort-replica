@@ -27,7 +27,7 @@ const decrement = () => {
 .counter {
     text-align: center;
     border: 1px $primary solid;
-    padding: 8px 20px;
+    padding: 8px 36px;
     color: white;
     display: flex;
     justify-content: space-between;
