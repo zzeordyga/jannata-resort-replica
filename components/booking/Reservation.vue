@@ -13,7 +13,10 @@
                             <InputsCounter label="Adults(s)" />
                             <InputsCounter label="Children" />
                         </div>
-                        <div class="columns btn-text"></div>
+                        <div class="columns btn-text">
+                            <Button text="Rates & Availability" href="'/'" type="action" />
+                            <Button text="Discover Our Exclusive Deals" href="'/en/exclusive-deals'" type="ghost" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,6 +42,7 @@ import { scrollTarget } from '@/utils/state';
 }
 
 .btn {
+
     &-increment {
         display: flex;
         justify-content: space-between;
@@ -47,10 +51,22 @@ import { scrollTarget } from '@/utils/state';
             flex: 1;
             margin: 0 6px;
         }
+    }
 
-        @include for-phone {
+    @include for-phone {
+        &-increment {
             flex-direction: column;
         }
+    }
+}
+
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+
+    &>* {
+        flex: 1;
+        /* margin: 0 6px; */
     }
 }
 

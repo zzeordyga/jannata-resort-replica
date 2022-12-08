@@ -1,6 +1,7 @@
 <template>
     <div>
-        <input class="calendar" type="date" :name="props.name" :id="props.id" :placeholder="placeholder">
+        <label :for="props.name">{{ props.placeholder }}</label>
+        <input class="calendar" type="date" :name="props.name" :id="props.id" :placeholder="props.placeholder" />
     </div>
 </template>
 
@@ -13,12 +14,18 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
+label {
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
 .calendar {
     border: 1px $primary solid;
-    padding: 12px 42px;
+    padding: 12px 24px;
     background-color: transparent;
-    margin: 0 6px;
     color: $primary;
+    margin: 0 6px;
 
 
     &::placeholder {
@@ -28,12 +35,11 @@ const props = defineProps({
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    color: rgba(0, 0, 0, 0);
     opacity: 1;
     display: block;
     width: 20px;
     height: 20px;
-    opacity: 0;
     border-width: thin;
+    filter: invert(1);
 }
 </style>
