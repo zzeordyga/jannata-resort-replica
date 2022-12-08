@@ -1,5 +1,5 @@
 <template>
-    <button ref="btnRef" :class="('btn-' + props.type)" :href="props.href" @mousemove="hoverMove"
+    <button ref="btnRef" :class="('btn-' + props.type)" @click="(navigateTo(props.href))" @mousemove="hoverMove"
         @mouseleave="resetPosition">{{ props.text
         }}</button>
 </template>

@@ -1,13 +1,13 @@
 <template>
-    <div class="parallax-background">
+    <div class="parallax-background" id="parallax">
         <div class="q-container container-inner">
             <div class="columns block-card-shadow">
                 <div class="column block-picture">
                     <figure class="picture" style="height: 390px;">
+                        <div class="parallax-box" ref="box"></div>
                         <div class="picture-box">
                             <img class="image-parallax" :src="resolveUrl(model)" style="height: 429px">
                         </div>
-                        <div class="parallax-box" ref="box"></div>
                     </figure>
                 </div>
                 <div class="column block-entry">
@@ -28,8 +28,51 @@
 </template>
 
 <script setup lang="ts">
+import gsap from 'gsap'
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
+
 const props = defineProps(['model'])
 const box = ref()
+
+onMounted(() => {
+    gsap.to(".picture-box", {
+        opacity: 1,
+        clipPath: 'inset(0 0px 0 0)',
+        duration: 1,
+        scrollTrigger: {
+            trigger: ".picture-box",
+            toggleActions: "restart reverse restart none"
+        },
+    })
+
+    gsap.to(".content-text", {
+        opacity: 1,
+        duration: 1,
+        y: -50,
+        scrollTrigger: {
+            trigger: ".content-text",
+            toggleActions: "restart reverse restart none"
+        },
+    })
+
+    gsap.to(box.value, {
+        scrollTrigger: {
+            trigger: box.value,
+            scrub: 1
+        },
+        y: 40,
+    })
+
+    gsap.to('.image-parallax', {
+        scrollTrigger: {
+            trigger: box.value,
+            scrub: 1
+        },
+        y: 80,
+    })
+})
+
 </script>
 
 <style scoped lang="scss">
@@ -49,7 +92,8 @@ const box = ref()
 }
 
 .content-text {
-    color: #5f5c68
+    color: #5f5c68;
+    opacity: 0;
 }
 
 .parallax-background {
@@ -89,7 +133,7 @@ const box = ref()
     padding: 0 50px 0 100px;
     position: absolute;
     top: 20%;
-    right: 10%;
+    right: 8%;
     width: 40%;
     transform: matrix(1, 0, 0, 1, 0, 0);
 
@@ -152,8 +196,12 @@ const box = ref()
 
 .picture-box {
     overflow: hidden;
+    clip-path: inset(0 300px 0 0);
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 0);
 
     & img {
+        height: 715px;
         width: auto;
         z-index: 5;
     }
