@@ -42,7 +42,7 @@ onMounted(() => {
         duration: 1,
         scrollTrigger: {
             trigger: ".picture-box",
-            toggleActions: "restart reverse restart none"
+            toggleActions: "restart reverse reset none"
         },
     })
 
@@ -52,7 +52,7 @@ onMounted(() => {
         y: -50,
         scrollTrigger: {
             trigger: ".content-text",
-            toggleActions: "restart reverse restart none"
+            toggleActions: "restart reverse reset none"
         },
     })
 
@@ -76,25 +76,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.section-headline {
-    font: 400 35px/1.3 Playfair Display, serif;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: #5f5c68;
-    position: relative;
-    margin-top: 0;
-    display: block;
-    margin-bottom: 50px;
-
-    @include for-phone {
-        font-size: 20px;
-    }
-}
-
-.content-text {
-    color: #5f5c68;
-    opacity: 0;
-}
 
 .parallax-background {
 

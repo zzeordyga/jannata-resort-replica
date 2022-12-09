@@ -119,3 +119,27 @@ $phone-width: 540px;
         justify-content: center;
     }
 }
+
+.section-headline {
+    font: 400 35px/1.3 Playfair Display, serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #5f5c68;
+    position: relative;
+    margin-top: 0;
+    display: block;
+    margin-bottom: 50px;
+
+    @include for-phone {
+        font-size: 20px;
+    }
+}
+
+.section-description {
+    font: 400 18px/1.3 Playfair Display, serif;
+}
+
+.content-text {
+    color: #5f5c68;
+    opacity: 0;
+}
