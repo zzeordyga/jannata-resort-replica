@@ -3,9 +3,9 @@
         <div class="q-container container-inner">
             <div class="columns">
                 <div class="column"></div>
-                <div class="column">
+                <div class="column content-container">
                     <div class="content-text-2">
-                        <h1 class="section-headline" v-html="model.title"></h1>
+                        <h1 class="section-headline-2" v-html="model.title"></h1>
                     </div>
                     <div class="content-text-2">
                         <h1 v-html="model.description" class="section-description">
@@ -15,18 +15,18 @@
             </div>
             <div class="columns">
                 <div class="column villas-container">
-                    <div id="accommodations">
-                        <div class="accommodation-type" v-for="(slide, i) in props.model.dataSlider" :key="i">
-                            <div class="accommodation-type column-item">
-                                <a :href="slide.link.url">
-                                    <h4 class="accommodation-name">{{ slide.title }}</h4>
-                                    <div class="accommodation-bg"
-                                        :style="{ backgroundImage: `url(${resolveUrl(slide)})` }">
-                                        <div class="accommodation-bg-change"
-                                            :style="{ backgroundImage: `url(${resolveUrl(slide)})` }"></div>
+                    <div class="accommodations">
+                        <div  v-for="(slide, i) in pr.model.dataSlider" :key="i" class="accommodation-type column-item" @mouseover="hoverImage(slide)"
+                            @mouseleave="(currentBg = '')">
+                            <a :href="slide.link.url">
+                                <h4 class="accommodation-name">{{ slide.title }}</h4>
+                                <div class="accommodation-bg"
+                                    :style="{ backgroundImage: `${currentBg.length !== 0 ? currentBg : `url(${resolveUrl(slide)})`}` }">
+                                    <div class="accommodation-bg-change"
+                                        :style="{ backgroundImage: `${currentBg.length !== 0 ? currentBg : `url(${resolveUrl(slide)})`}` }">
                                     </div>
-                                </a>
-                            </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -34,9 +34,26 @@
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
-const props = defineProps(['model'])
+import gsap from 'gsap'
+const pr = defineProps(['model'])
+const currentBg = ref('')
+
+const hoverImage = (slide: SlideData) => {
+    currentBg.value = `url(${resolveUrlHovered(slide)})`;
+}
+
+onMounted(() => {
+    gsap.to(".content-text-2", {
+        opacity: 1,
+        duration: 1,
+        y: -50,
+        scrollTrigger: {
+            trigger: ".content-text-2",
+            toggleActions: "restart reverse none none"
+        },
+    })
+})
 
 </script>
 
@@ -44,10 +61,10 @@ const props = defineProps(['model'])
 .third-section {
     background-color: #5f5c68;
     color: white;
+    padding: 100px 0 100px;
 
     &:before {
         background-image: url('https://jannataresort.com/_nuxt/img/a989adf.png');
-        top: -1%;
         left: 20%;
         height: 100%;
         width: 300px;
@@ -64,8 +81,7 @@ const props = defineProps(['model'])
     }
 }
 
-.context-text-2 {
-    opacity: 0;
+.section-description {
     color: white;
 }
 
@@ -130,6 +146,7 @@ const props = defineProps(['model'])
             transform: translateX(-105%);
             background-color: #333107;
             background-size: cover;
+            transition: all .4s ease;
         }
     }
 
@@ -148,6 +165,43 @@ const props = defineProps(['model'])
             height: 185px;
             width: calc(100% - 40px);
             float: none;
+        }
+
+        a {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        &:first-child {
+            a .accommodation-bg-change {
+                background-position: 0;
+            }
+        }
+
+        &:nth-child(2) {
+            a .accommodation-bg-change {
+                background-position: 50%;
+            }
+        }
+
+        &:nth-child(3) {
+            a .accommodation-bg-change {
+                background-position: 100%;
+            }
+        }
+    }
+
+    &s {
+        &:hover {
+            .accommodation-type a .accommodation-bg-change {
+                background-size: 300% 100%;
+                transform: translateX(0);
+                width: 100%;
+            }
         }
     }
 }

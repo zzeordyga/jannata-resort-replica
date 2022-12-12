@@ -133,6 +133,21 @@ $phone-width: 540px;
     @include for-phone {
         font-size: 20px;
     }
+
+    &-2 {
+        font: 400 35px/1.3 Playfair Display, serif;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        color: white;
+        position: relative;
+        margin-top: 0;
+        display: block;
+        margin-bottom: 50px;
+
+        @include for-phone {
+            font-size: 20px;
+        }
+    }
 }
 
 .section-description {
@@ -142,4 +157,9 @@ $phone-width: 540px;
 .content-text {
     color: #5f5c68;
     opacity: 0;
+
+    &-2 {
+        color: white;
+        opacity: 0;
+    }
 }

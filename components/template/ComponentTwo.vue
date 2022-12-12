@@ -81,7 +81,8 @@ onMounted(() => {
 
     position: relative;
     overflow: hidden;
-
+    margin-bottom: 48px;
+    
     &:after,
     &:before {
         content: "";
