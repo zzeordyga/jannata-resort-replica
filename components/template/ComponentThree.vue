@@ -16,8 +16,8 @@
             <div class="columns">
                 <div class="column villas-container">
                     <div class="accommodations">
-                        <div  v-for="(slide, i) in pr.model.dataSlider" :key="i" class="accommodation-type column-item" @mouseover="hoverImage(slide)"
-                            @mouseleave="(currentBg = '')">
+                        <div v-for="(slide, i) in pr.model.dataSlider" :key="i" class="accommodation-type column-item"
+                            @mouseover="hoverImage(slide)" @mouseleave="(currentBg = '')">
                             <a :href="slide.link.url">
                                 <h4 class="accommodation-name">{{ slide.title }}</h4>
                                 <div class="accommodation-bg"
@@ -40,7 +40,8 @@ const pr = defineProps(['model'])
 const currentBg = ref('')
 
 const hoverImage = (slide: SlideData) => {
-    currentBg.value = `url(${resolveUrlHovered(slide)})`;
+    if (window.innerWidth >= 768)
+        currentBg.value = `url(${resolveUrlHovered(slide)})`;
 }
 
 onMounted(() => {
@@ -126,7 +127,7 @@ onMounted(() => {
         z-index: 1;
         background-color: transparent;
         overflow: hidden;
-        background-size: 95%;
+        background-size: 98%;
         background-position: 50%;
         background-repeat: no-repeat;
         margin: auto;
@@ -196,11 +197,24 @@ onMounted(() => {
     }
 
     &s {
+        display: flex;
+
+        @include for-tablet {
+            display: block;
+        }
+
         &:hover {
             .accommodation-type a .accommodation-bg-change {
                 background-size: 300% 100%;
                 transform: translateX(0);
                 width: 100%;
+
+                @include for-tablet {
+                    display: none;
+                    background-size: 0%;
+                    transform: none;
+                    width: 0;
+                }
             }
         }
     }
