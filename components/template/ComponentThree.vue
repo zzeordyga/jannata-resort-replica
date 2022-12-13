@@ -51,7 +51,7 @@ onMounted(() => {
         y: -50,
         scrollTrigger: {
             trigger: ".content-text-2",
-            toggleActions: "restart reverse none none"
+            toggleActions: "play pause resume reset"
         },
     })
 })

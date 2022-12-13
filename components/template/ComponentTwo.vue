@@ -42,7 +42,7 @@ onMounted(() => {
         duration: 1,
         scrollTrigger: {
             trigger: ".picture-box",
-            toggleActions: "restart reverse reset none"
+            toggleActions: "play pause resume reset"
         },
     })
 
@@ -52,7 +52,7 @@ onMounted(() => {
         y: -50,
         scrollTrigger: {
             trigger: ".content-text",
-            toggleActions: "restart reverse reset none"
+            toggleActions: "play pause resume reset"
         },
     })
 
