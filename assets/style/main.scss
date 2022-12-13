@@ -102,6 +102,12 @@ $phone-width: 540px;
     }
 }
 
+.bg-image{
+    & * {
+        color: #fff;
+    }
+}
+
 .section {
     padding: 150px 0 100px;
 
@@ -156,6 +162,7 @@ $phone-width: 540px;
 
     &-2,
     &-3,
+    &-4,
     & {
         font: 400 35px/1.3 Playfair Display, serif;
         text-transform: uppercase;
@@ -183,6 +190,23 @@ $phone-width: 540px;
     &-2 {
         color: white;
         opacity: 0;
+    }
+}
+
+.title-line{
+    right: -125px;
+    height: 1px;
+    background-color: #679334;
+    margin: -85px 0 80px;
+    position: relative;
+    top: 5%;
+
+    @include for-desktop {
+        left: 90px
+    }
+
+    @include for-phone {
+        left: 50px
     }
 }
 
