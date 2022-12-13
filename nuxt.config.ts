@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     },
     css: [
         '~/assets/style/main.css',
+        '~/assets/style/parallax.scss',
     ],
     vite: {
         css: {

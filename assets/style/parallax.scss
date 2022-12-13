@@ -1,0 +1,114 @@
+.block-card-overlap .overlap-wrapper {
+    position: relative;
+    padding-bottom: 130px;
+
+    @include for-desktop {
+        padding-bottom: 100px;
+    }
+
+    @include for-tablet {
+        padding-bottom: 20px;
+    }
+}
+
+.block-picture {
+    flex: none;
+    width: 57.5%;
+
+    @include for-phone {
+        width: 100%;
+    }
+
+    &.wide {
+        width: 95%;
+    }
+}
+
+.block-entry {
+    display: flex;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+    align-items: center;
+    -webkit-align-items: center;
+    flex: none;
+    width: 42.5%;
+
+    @include for-phone {
+        width: 100%;
+        padding: 50px;
+    }
+}
+
+.picture {
+    position: relative;
+    margin: 0;
+    padding: 0 30px 0 20px;
+
+    @include for-phone {
+        margin-top: 240px;
+        padding: 0 20px 0 0;
+        overflow: hidden;
+    }
+}
+
+.parallax-box {
+    position: absolute;
+    top: 60px;
+    right: -80%;
+    width: 140%;
+    z-index: -1;
+    height: 100%;
+    background-color: #d8d6e2;
+
+    @include for-phone {
+        display: none;
+    }
+}
+
+.picture-box {
+    overflow: hidden;
+    clip-path: inset(0 300px 0 0);
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+
+    & img {
+        height: 715px;
+        width: auto;
+        z-index: 5;
+    }
+
+    @include for-phone {
+        overflow: visible;
+
+        & img {
+            width: 100%;
+        }
+    }
+}
+
+.inner {
+    padding: 0 50px 0 100px;
+    position: absolute;
+    top: 20%;
+    right: 8%;
+    width: 40%;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+
+    @include for-desktop {
+        width: 30%;
+        padding-left: 0;
+    }
+
+    @include for-tablet {
+        padding-right: 25px;
+    }
+
+    @include for-phone {
+        position: absolute;
+        text-align: left;
+        margin-bottom: 30px;
+        top: 5%;
+        right: 0%;
+        width: 90%;
+    }
+}
