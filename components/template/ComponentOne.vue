@@ -1,5 +1,5 @@
 <template>
-    <div class="slideshow-container">
+    <section class="slideshow-container">
         <a href="/" class="slideshow-logo">
             <img src="@/assets/images/jannata.png" alt="">
         </a>
@@ -20,7 +20,7 @@
                 <Icon name="heroicons-solid:chevron-right" size="2rem" />
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-    <div class="section third-section">
+    <section class="section third-section">
         <div class="q-container container-inner">
             <div class="columns">
                 <div class="column"></div>
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script setup lang="ts">
 import gsap from 'gsap'

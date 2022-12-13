@@ -1,5 +1,5 @@
 <template>
-    <div class="parallax-background" id="parallax">
+    <section class="parallax-background" id="parallax">
         <div class="q-container container-inner">
             <div class="columns block-card-shadow">
                 <div class="column block-picture">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup lang="ts">

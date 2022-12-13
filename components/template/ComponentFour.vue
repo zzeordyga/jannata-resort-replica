@@ -1,13 +1,15 @@
 <template>
-    <div>
-        Four
-    </div>
+    <section>
+        
+    </section>
 </template>
 
 <script setup lang="ts">
-
+import gsap from 'gsap'
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
