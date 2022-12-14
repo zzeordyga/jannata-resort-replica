@@ -3,6 +3,7 @@
         <component v-for="item in components.slice().reverse()" :key="item.id" :is="item.component" :model="item.model">
         </component>
         <BookingReservation></BookingReservation>
+        <Footer></Footer>
     </div>
 </template>
 
