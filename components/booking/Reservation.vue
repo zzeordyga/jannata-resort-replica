@@ -25,7 +25,21 @@
 </template>
 
 <script setup lang="ts">
-import { scrollTarget } from '@/utils/state';
+import gsap from 'gsap'
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger)
+
+onMounted(() => {
+    gsap.to('#bgReservation', {
+        ease: 'none',
+        y: 100,
+        backgroundPosition: '',
+        scrollTrigger: {
+            trigger: '#bgReservation',
+            scrub: 1
+        },
+    })
+})
 </script>
 
 <style scoped lang="scss">
@@ -75,5 +89,9 @@ import { scrollTarget } from '@/utils/state';
 
 #bgReservation {
     background-image: url('https://jannataresort.com/_nuxt/img/9e91fad.jpg');
+}
+
+.bg-image {
+    transform: translateY(-20%);
 }
 </style>
