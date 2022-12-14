@@ -62,7 +62,7 @@ onMounted(() => {
         next()
     }, delay)
 
-    // Draggable.create('.slide', {
+    // Draggable.create(sliderContainer.value, {
     //     type: 'x',
     //     bounds: sliderContainer.value,
     //     onClick: e => {

@@ -1,5 +1,9 @@
 <template>
     <div>
+
+        <Head>
+            <Title>Homepage | Jannata Resort & Spa</Title>
+        </Head>
         <component v-for="item in components.slice().reverse()" :key="item.id" :is="item.component" :model="item.model">
         </component>
         <BookingReservation></BookingReservation>
