@@ -1,27 +1,29 @@
 <template>
-    <div>
-        <component v-for="item in components.slice().reverse()" :key="item.id" :is="item.component" :model="item.model">
-        </component>
-        <BookingReservation></BookingReservation>
-        <Footer></Footer>
-    </div>
+  <div class="layout">
+    <Navigation />
+    <main>
+      <Hero />
+      <ResortSection />
+      <StaySection />
+      <DiningSection />
+      <SpaSection />
+      <TestimonialsSection />
+      <BookingSection />
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script setup lang="ts">
-import data from '@/content/homepage.json'
+import { useReveal } from '~/composables/useReveal';
 
-const components = data?.components.map((c, i) => {
-    return {
-        ...c,
-        id: i,
-        component: defineAsyncComponent(() => import(`@/components/template/${c.component_name}.vue`))
-    }
-}).slice().reverse();
+useSeoMeta({
+  title: 'Jannata — Luxury Villas & Resort, Ubud Bali',
+  description:
+    'A boutique luxury villa resort in Ubud, Bali. Spa, dining, and private pool villas surrounded by rice terraces.',
+  ogTitle: 'Jannata — Luxury Villas & Resort',
+  ogDescription: 'A boutique luxury villa resort in Ubud, Bali.',
+});
+
+useReveal();
 </script>
-<style>
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-</style>

@@ -1,18 +1,8 @@
 node_modules
-*.log*
 .nuxt
-.nitro
+.output
 .cache
-.output
-.env
 dist
-
-# Nuxt dev/build outputs
-.output
-.nuxt
-# Node dependencies
-node_modules
-# System files
+.DS_Store
 *.log
-
-temp
+.env
