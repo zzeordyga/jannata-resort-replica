@@ -32,6 +32,7 @@ export default defineNuxtConfig({
   },
 
   image: {
+    provider: 'none',
     domains: ['vold-chain-hotel.s3-ap-southeast-1.amazonaws.com', 'jannataresort.com'],
     quality: 72,
   },
