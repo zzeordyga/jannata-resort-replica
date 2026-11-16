@@ -13,7 +13,7 @@
   "devDependencies": {
     "@nuxt/icon": "^1.10.0",
     "@nuxt/image": "^1.10.0",
-    "nuxt": "^4.0.0",
+    "nuxt": "^4.6.4",
     "sass": "^1.83.0",
     "vue-tsc": "^2.2.0",
     "typescript": "^5.7.0"
